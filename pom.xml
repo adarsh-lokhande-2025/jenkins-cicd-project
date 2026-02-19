@@ -9,6 +9,7 @@
     <artifactId>maven-project</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <name>Maven Project</name>
     <description>Modernized Maven project with full reports on JDK 21</description>
 
@@ -22,7 +23,7 @@
 
         <!-- Plugin versions -->
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
-        <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
+        <maven-surefire.plugin.version>3.2.5</maven-surefire.plugin.version>
         <maven-checkstyle.plugin.version>3.2.2</maven-checkstyle.plugin.version>
         <maven-pmd.plugin.version>3.22.0</maven-pmd.plugin.version>
         <spotbugs.maven.plugin.version>4.8.1</spotbugs.maven.plugin.version>
@@ -30,8 +31,18 @@
         <maven-javadoc.plugin.version>3.5.2</maven-javadoc.plugin.version>
         <maven-site.plugin.version>3.13.1</maven-site.plugin.version>
         <taglist.maven.plugin.version>2.4</taglist.maven.plugin.version>
+
+        <!-- Dependency versions -->
+        <junit.version>4.13.2</junit.version>
+        <hamcrest.version>2.2</hamcrest.version>
+        <mockito.version>5.5.0</mockito.version>
+        <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
+        <jakarta.jsp.version>3.1.0</jakarta.jsp.version>
     </properties>
 
+    <!-- ================== -->
+    <!-- Modules            -->
+    <!-- ================== -->
     <modules>
         <module>server</module>
         <module>webapp</module>
@@ -44,7 +55,7 @@
         <pluginManagement>
             <plugins>
 
-                <!-- Compiler Plugin (JDK 21) -->
+                <!-- Compiler Plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -58,7 +69,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven.surefire.plugin.version}</version>
+                    <version>${maven-surefire.plugin.version}</version>
                 </plugin>
 
                 <!-- WAR Plugin -->
@@ -95,7 +106,7 @@
                 <version>${maven-pmd.plugin.version}</version>
             </plugin>
 
-            <!-- SpotBugs (modern FindBugs) -->
+            <!-- SpotBugs -->
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
@@ -106,7 +117,7 @@
                 </configuration>
             </plugin>
 
-            <!-- JXR (source cross-reference) -->
+            <!-- JXR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
@@ -136,5 +147,61 @@
 
         </plugins>
     </reporting>
+
+    <!-- ================== -->
+    <!-- Dependencies       -->
+    <!-- ================== -->
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- JUnit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Hamcrest -->
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>${hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-library</artifactId>
+                <version>${hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Mockito -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Servlet API -->
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>${jakarta.servlet.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- JSP API -->
+            <dependency>
+                <groupId>jakarta.servlet.jsp</groupId>
+                <artifactId>jakarta.servlet.jsp-api</artifactId>
+                <version>${jakarta.jsp.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 
 </project>
