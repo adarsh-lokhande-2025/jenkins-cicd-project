@@ -6,116 +6,84 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example.maven-project</groupId>
-    <artifactId>maven-project</artifactId>
+    <artifactId>register-app</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
 
-    <name>Maven Project - Java 21 Compatible</name>
+    <name>Register App - Java 21</name>
 
-    <!-- ===================== -->
-    <!-- Properties            -->
-    <!-- ===================== -->
     <properties>
-        <java.version>21</java.version>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <!-- Plugin Versions -->
-        <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
-        <maven.war.plugin.version>3.4.0</maven.war.plugin.version>
-        <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
-
-        <!-- Dependency Versions -->
-        <servlet.version>4.0.1</servlet.version>
-        <jsp.version>2.3.3</jsp.version>
-        <junit.version>4.13.2</junit.version>
-        <mockito.version>5.5.0</mockito.version>
     </properties>
 
-    <!-- ===================== -->
-    <!-- Modules               -->
-    <!-- ===================== -->
-    <modules>
-        <module>server</module>
-        <module>webapp</module>
-    </modules>
+    <dependencies>
 
-    <!-- ===================== -->
-    <!-- Dependency Management -->
-    <!-- ===================== -->
-    <dependencyManagement>
-        <dependencies>
+        <!-- Servlet API (Tomcat 9 compatible) -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
 
-            <!-- Servlet API (Javax - Compatible with Tomcat 9) -->
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>${servlet.version}</version>
-                <scope>provided</scope>
-            </dependency>
+        <!-- JSP API -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
+            <scope>provided</scope>
+        </dependency>
 
-            <!-- JSP API -->
-            <dependency>
-                <groupId>javax.servlet.jsp</groupId>
-                <artifactId>javax.servlet.jsp-api</artifactId>
-                <version>${jsp.version}</version>
-                <scope>provided</scope>
-            </dependency>
+        <!-- JUnit 4 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
 
-            <!-- JUnit -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
+        <!-- Hamcrest -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
 
-            <!-- Mockito -->
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
-            </dependency>
+    </dependencies>
 
-        </dependencies>
-    </dependencyManagement>
-
-    <!-- ===================== -->
-    <!-- Build Configuration   -->
-    <!-- ===================== -->
     <build>
-        <pluginManagement>
-            <plugins>
+        <plugins>
 
-                <!-- Java 21 Compiler -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven.compiler.plugin.version}</version>
-                    <configuration>
-                        <release>${java.version}</release>
-                    </configuration>
-                </plugin>
+            <!-- Java 21 Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>21</release>
+                </configuration>
+            </plugin>
 
-                <!-- WAR Plugin -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>${maven.war.plugin.version}</version>
-                    <configuration>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
+            <!-- WAR Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
 
-                <!-- Surefire (Unit Testing) -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven.surefire.plugin.version}</version>
-                </plugin>
+            <!-- Surefire (Test) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
 
-            </plugins>
-        </pluginManagement>
+        </plugins>
     </build>
 
 </project>
