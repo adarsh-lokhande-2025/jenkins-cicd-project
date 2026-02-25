@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
@@ -10,147 +10,39 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Maven Project</name>
-    <description>Modernized Maven project with full reports on JDK 21</description>
+    <name>Maven Multi-Module Project</name>
+    <description>Modern Maven Project (JDK 21, Jakarta EE, CI/CD Ready)</description>
 
-    <!-- ================== -->
-    <!-- Java 21 Settings   -->
-    <!-- ================== -->
+    <!-- ========================= -->
+    <!-- Properties                -->
+    <!-- ========================= -->
     <properties>
-        <maven.compiler.release>21</maven.compiler.release>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!-- Plugin versions -->
+        <!-- Plugin Versions -->
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
-        <maven-surefire.plugin.version>3.2.5</maven-surefire.plugin.version>
-        <maven-checkstyle.plugin.version>3.2.2</maven-checkstyle.plugin.version>
-        <maven-pmd.plugin.version>3.22.0</maven-pmd.plugin.version>
-        <spotbugs.maven.plugin.version>4.8.1</spotbugs.maven.plugin.version>
-        <maven-jxr.plugin.version>3.1.1</maven-jxr.plugin.version>
-        <maven-javadoc.plugin.version>3.5.2</maven-javadoc.plugin.version>
-        <maven-site.plugin.version>3.13.1</maven-site.plugin.version>
-        <taglist.maven.plugin.version>2.4</taglist.maven.plugin.version>
+        <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
+        <maven.war.plugin.version>3.4.0</maven.war.plugin.version>
 
-        <!-- Dependency versions -->
+        <!-- Dependency Versions -->
         <junit.version>4.13.2</junit.version>
-        <hamcrest.version>2.2</hamcrest.version>
         <mockito.version>5.5.0</mockito.version>
         <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
         <jakarta.jsp.version>3.1.0</jakarta.jsp.version>
     </properties>
 
-    <!-- ================== -->
-    <!-- Modules            -->
-    <!-- ================== -->
+    <!-- ========================= -->
+    <!-- Modules                   -->
+    <!-- ========================= -->
     <modules>
         <module>server</module>
         <module>webapp</module>
     </modules>
 
-    <!-- ================== -->
-    <!-- Build Plugins      -->
-    <!-- ================== -->
-    <build>
-        <pluginManagement>
-            <plugins>
-
-                <!-- Compiler Plugin -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven.compiler.plugin.version}</version>
-                    <configuration>
-                        <release>21</release>
-                    </configuration>
-                </plugin>
-
-                <!-- Surefire (Unit Tests) -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire.plugin.version}</version>
-                </plugin>
-
-                <!-- WAR Plugin -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>3.4.0</version>
-                    <configuration>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
-                </plugin>
-
-            </plugins>
-        </pluginManagement>
-    </build>
-
-    <!-- ================== -->
-    <!-- Reporting Plugins  -->
-    <!-- ================== -->
-    <reporting>
-        <plugins>
-
-            <!-- Checkstyle -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${maven-checkstyle.plugin.version}</version>
-            </plugin>
-
-            <!-- PMD -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>${maven-pmd.plugin.version}</version>
-            </plugin>
-
-            <!-- SpotBugs -->
-            <plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>${spotbugs.maven.plugin.version}</version>
-                <configuration>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
-                </configuration>
-            </plugin>
-
-            <!-- JXR -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>${maven-jxr.plugin.version}</version>
-            </plugin>
-
-            <!-- Javadoc -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc.plugin.version}</version>
-            </plugin>
-
-            <!-- Surefire Report -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.1.2</version>
-            </plugin>
-
-            <!-- Taglist -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>taglist-maven-plugin</artifactId>
-                <version>${taglist.maven.plugin.version}</version>
-            </plugin>
-
-        </plugins>
-    </reporting>
-
-    <!-- ================== -->
-    <!-- Dependencies       -->
-    <!-- ================== -->
+    <!-- ========================= -->
+    <!-- Dependency Management     -->
+    <!-- ========================= -->
     <dependencyManagement>
         <dependencies>
 
@@ -162,21 +54,6 @@
                 <scope>test</scope>
             </dependency>
 
-            <!-- Hamcrest -->
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-core</artifactId>
-                <version>${hamcrest.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-library</artifactId>
-                <version>${hamcrest.version}</version>
-                <scope>test</scope>
-            </dependency>
-
             <!-- Mockito -->
             <dependency>
                 <groupId>org.mockito</groupId>
@@ -185,7 +62,7 @@
                 <scope>test</scope>
             </dependency>
 
-            <!-- Servlet API -->
+            <!-- Jakarta Servlet -->
             <dependency>
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
@@ -193,7 +70,7 @@
                 <scope>provided</scope>
             </dependency>
 
-            <!-- JSP API -->
+            <!-- Jakarta JSP -->
             <dependency>
                 <groupId>jakarta.servlet.jsp</groupId>
                 <artifactId>jakarta.servlet.jsp-api</artifactId>
@@ -203,5 +80,43 @@
 
         </dependencies>
     </dependencyManagement>
+
+    <!-- ========================= -->
+    <!-- Plugin Management         -->
+    <!-- ========================= -->
+    <build>
+        <pluginManagement>
+            <plugins>
+
+                <!-- Compiler Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                    <configuration>
+                        <release>${java.version}</release>
+                    </configuration>
+                </plugin>
+
+                <!-- Surefire Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                </plugin>
+
+                <!-- WAR Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${maven.war.plugin.version}</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
